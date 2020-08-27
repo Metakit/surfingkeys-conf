@@ -691,8 +691,8 @@ actions.dr.attachment = (cb = (a) => actions.openLink(a, { newTab: true })()) =>
 
 // Wikipedia
 // ---------
-actions.wp = {}
-actions.wp.toggleSimple = () => {
+actions.we = {}
+actions.we.toggleSimple = () => {
   const u = new URL(util.getCurrentLocation("href"))
   u.hostname = u.hostname.split(".")
     .map((s, i) => {

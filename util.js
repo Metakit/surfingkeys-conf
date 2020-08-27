@@ -65,11 +65,19 @@ util.isElementInViewport = (e) =>
   && util.isRectVisibleInViewport(e.getBoundingClientRect())
 
 // Process Unmaps
-util.rmMaps = (a) => {
+util.rmMaps = (a, type) => {
   if (typeof unmap === "undefined") {
     return
   }
-  a.forEach((u) => unmap(u))
+  if (type === "") {
+    a.forEach((u) => unmap(u))
+  } else if (type === "i") {
+    a.forEach((u) => iunmap(u))
+  } else if (type === "v") {
+    a.forEach((u) => vunmap(u))
+  } else if (type === "c") {
+    a.forEach((u) => cunmap(u))
+  }
 }
 
 util.rmSearchAliases = (a) => Object.entries(a).forEach(([leader, items]) => {
@@ -98,6 +106,7 @@ util.processMaps = (maps, aliases, siteleader) => {
       leader = (domain === "global") ? "" : siteleader,
       category = categories.misc,
       description = "",
+      maptype,
     } = mapObj
     const opts = {}
 
@@ -111,7 +120,13 @@ util.processMaps = (maps, aliases, siteleader) => {
 
     const fullDescription = `#${category} ${description}`
 
-    if (mapObj.map !== undefined) {
+    if (maptype === "c") {
+      cmap(alias, mapObj.map)
+    } else if (maptype === "i") {
+      imap(alias, mapObj.map)
+    } else if (maptype === "v") {
+      vmap(alias, mapObj.map)
+    } else if (mapObj.map !== undefined) {
       map(alias, mapObj.map)
     } else {
       mapkey(key, fullDescription, callback, opts)

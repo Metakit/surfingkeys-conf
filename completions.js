@@ -1,7 +1,7 @@
 const { keys } = require("./conf.priv.js")
 const { escape, createSuggestionItem, createURLItem } = require("./util")
 
-const wpDefaultIcon = "data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2056%2056%22%20enable-background%3D%22new%200%200%2056%2056%22%3E%0A%20%20%20%20%3Cpath%20fill%3D%22%23eee%22%20d%3D%22M0%200h56v56h-56z%22%2F%3E%0A%20%20%20%20%3Cpath%20fill%3D%22%23999%22%20d%3D%22M36.4%2013.5h-18.6v24.9c0%201.4.9%202.3%202.3%202.3h18.7v-25c.1-1.4-1-2.2-2.4-2.2zm-6.2%203.5h5.1v6.4h-5.1v-6.4zm-8.8%200h6v1.8h-6v-1.8zm0%204.6h6v1.8h-6v-1.8zm0%2015.5v-1.8h13.8v1.8h-13.8zm13.8-4.5h-13.8v-1.8h13.8v1.8zm0-4.7h-13.8v-1.8h13.8v1.8z%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+const weDefaultIcon = "data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2056%2056%22%20enable-background%3D%22new%200%200%2056%2056%22%3E%0A%20%20%20%20%3Cpath%20fill%3D%22%23eee%22%20d%3D%22M0%200h56v56h-56z%22%2F%3E%0A%20%20%20%20%3Cpath%20fill%3D%22%23999%22%20d%3D%22M36.4%2013.5h-18.6v24.9c0%201.4.9%202.3%202.3%202.3h18.7v-25c.1-1.4-1-2.2-2.4-2.2zm-6.2%203.5h5.1v6.4h-5.1v-6.4zm-8.8%200h6v1.8h-6v-1.8zm0%204.6h6v1.8h-6v-1.8zm0%2015.5v-1.8h13.8v1.8h-13.8zm13.8-4.5h-13.8v-1.8h13.8v1.8zm0-4.7h-13.8v-1.8h13.8v1.8z%22%2F%3E%0A%3C%2Fsvg%3E%0A"
 
 const cbDefaultIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAAAAAByaaZbAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAACYktHRAD/h4/MvwAAAAlwSFlzAAAOwwAADsMBx2+oZAAAAAd0SU1FB+EICxEMErRVWUQAAABOdEVYdFJhdyBwcm9maWxlIHR5cGUgZXhpZgAKZXhpZgogICAgICAyMAo0NTc4Njk2NjAwMDA0OTQ5MmEwMDA4MDAwMDAwMDAwMDAwMDAwMDAwCnwMkD0AAAGXSURBVEjH1ZRvc4IwDMb7/T8dbVr/sEPlPJQd3g22GzJdmxVOHaQa8N2WN7wwvyZ5Eh/hngzxTwDr0If/TAK67POxbqxnpgCIx9dkrkEvswYnAFiutFSgtQapS4ejwFYqbXQXBmC+QxawuI/MJb0LiCq0DICNHoZRKQdYLKQZEhATcQmwDYD5GR8DDtfqaYAMActvTiVMaUvqhZPVYhYAK2SBAwGMTHngnc4wVmFPW9L6k1PJxbSCkfvhqolKSQhsWSClizNyxwAWdzIADixQRXRmdWSHthsg+TknaztFMZgC3vh/nG/qo68TLAKrCSrUg1ulp3cH+BpItBp3DZf0lFXVOIDnBdwKkLO4D5Q3QMO6HJ+hUb1NKNWMGJn3jf4ejPKn99CXOtsuyab95obGL/rpdZ7oIJK87iPiumG01drbdggoCZuq/f0XaB8/FbG62Ta5cD97XJwuZUT7ONbZTIK5m94hBuQs8535MsL5xxPw6ZoNj0DiyzhhcyMf9BJ0Jk1uRRpNyb4y0UaM9UI7E8+kt/EHgR/R6042JzmiwgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxNy0wOC0xMVQxNzoxMjoxOC0wNDowMLy29LgAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTctMDgtMTFUMTc6MTI6MTgtMDQ6MDDN60wEAAAAAElFTkSuQmCC"
 
@@ -46,7 +46,6 @@ completions.au = {
   search: "https://aur.archlinux.org/packages/?O=0&SeB=nd&outdated=&SB=v&SO=d&PP=100&do_Search=Go&K=",
   compl:  "https://aur.archlinux.org/rpc?type=suggest&arg=",
 }
-
 completions.au.callback = (response) => {
   const res = JSON.parse(response.text)
   return res.map((s) => createURLItem(s, `https://aur.archlinux.org/packages/${s}`))
@@ -59,7 +58,6 @@ completions.aw = {
   search: "https://wiki.archlinux.org/index.php?go=go&search=",
   compl:  "https://wiki.archlinux.org/api.php?action=opensearch&format=json&formatversion=2&namespace=0&limit=10&suggest=true&search=",
 }
-
 completions.aw.callback = (response) => JSON.parse(response.text)[1]
 
 // Arch Linux Forums
@@ -81,7 +79,6 @@ completions.at = {
   search: "https://alternativeto.net/browse/search/?q=",
   compl:  `https://zidpns2vb0-dsn.algolia.net/1/indexes/fullitems?x-algolia-application-id=ZIDPNS2VB0&x-algolia-api-key=${keys.alternativeTo}&attributesToRetrieve=Name,UrlName,TagLine,Description,Likes,HasIcon,IconId,IconExtension,InternalUrl&query=`,
 }
-
 completions.at.callback = (response) => {
   const res = JSON.parse(response.text)
   return res.hits.map((s) => {
@@ -102,7 +99,7 @@ completions.at.callback = (response) => {
     }
     const desc = s.Description ? `<div class="title">${escape(s.Description)}</div>` : ""
 
-    let icUrl = wpDefaultIcon
+    let icUrl = weDefaultIcon
     if (s.HasIcon) {
       const icBase = "https://d2.alternativeto.net/dist/icons/"
       const icQuery = "?width=100&height=100&mode=crop&upscale=false"
@@ -197,7 +194,6 @@ completions.ow = {
   search: "https://www.owasp.org/index.php?go=go&search=",
   compl:  "https://www.owasp.org/api.php?action=opensearch&format=json&formatversion=2&namespace=0&limit=10&suggest=true&search=",
 }
-
 completions.ow.callback = (response) => JSON.parse(response.text)[1]
 
 // StackOverflow
@@ -207,7 +203,6 @@ completions.so = {
   search: "https://stackoverflow.com/search?q=",
   compl:  "https://api.stackexchange.com/2.2/search/advanced?pagesize=10&order=desc&sort=relevance&site=stackoverflow&q=",
 }
-
 completions.so.callback = (response) => JSON.parse(response.text).items.map((s) => createURLItem(`[${s.score}] ${s.title}`, s.link))
 
 // StackExchange - all sites (No completion)
@@ -224,7 +219,6 @@ completions.dh = {
   search: "https://hub.docker.com/search/?page=1&q=",
   compl:  "https://hub.docker.com/v2/search/repositories/?page_size=20&query=",
 }
-
 completions.dh.callback = (response) => JSON.parse(response.text).results.map((s) => {
   let meta = ""
   let repo = s.repo_name
@@ -249,7 +243,6 @@ completions.gh = {
   search: "https://github.com/search?q=",
   compl:  "https://api.github.com/search/repositories?sort=stars&order=desc&q=",
 }
-
 completions.gh.callback = (response) => JSON.parse(response.text).items.map((s) => {
   let prefix = ""
   if (s.stargazers_count) {
@@ -265,7 +258,6 @@ completions.do = {
   search: "https://domainr.com/?q=",
   compl:  "https://5jmgqstc3m.execute-api.us-west-1.amazonaws.com/v1/domainr?q=",
 }
-
 completions.do.callback = (response) => Object.entries(JSON.parse(response.text))
   .map(([domain, data]) => {
     let color = "inherit"
@@ -294,21 +286,54 @@ completions.vw = {
   search: "https://vim.fandom.com/wiki/Special:Search?query=",
   compl:  "https://vim.fandom.com/api.php?action=opensearch&format=json&formatversion=2&namespace=0&limit=10&suggest=true&search=",
 }
-
 completions.vw.callback = (response) => JSON.parse(response.text)[1]
   .map((r) => createURLItem(r, `https://vim.fandom.com/wiki/${r}`))
 
 // ****** Shopping & Food ****** //
 
-// Amazon
+// Amazon Global
 completions.az = {
   alias:  "az",
-  name:   "amazon",
+  name:   "amazon-global",
   search: "https://smile.amazon.com/s/?field-keywords=",
   compl:  "https://completion.amazon.com/search/complete?method=completion&mkt=1&search-alias=aps&q=",
 }
-
 completions.az.callback = (response) => JSON.parse(response.text)[1]
+
+// Amazon China
+completions.ac = {
+  alias:  "ac",
+  name:   "amazon-china",
+  search: "https://www.amazon.cn/s/?field-keywords=",
+  compl:  "https://completion.amazon.cn/api/2017/suggestions?session-id=458-7291940-7651946&customer-id=&request-id=9450DJCH61X433TNHEH3&page-type=Search&lop=zh_CN&site-variant=desktop&client-info=amazon-search-ui&mid=AAHKV2X7AFYLW&alias=aps&b2b=0&fresh=0&ks=&event=onKeyPress&limit=11&fb=1&suggestion-type=KEYWORD&suggestion-type=WIDGET&_=1598407208762&prefix=",
+}
+completions.ac.callback = (response) => {
+  const sugg = JSON.parse(response.text).suggestions
+  const words = []
+  sugg.forEach((s) => {
+    const w = s.value
+    if (words.indexOf(w) === -1) {
+      words.push(w)
+    }
+  })
+  return words
+}
+
+// Taobao
+completions.tb = {
+  alias:  "tb",
+  name:   "taobao",
+  search: "https://s.taobao.com/search?q=",
+  compl:  "https://suggest.taobao.com/sug?code=utf-8&_ksTS=1598451900194_408&k=1&area=c2c&bucketid=2&q=",
+}
+completions.tb.callback = (response) => {
+  const res = JSON.parse(response.text).result
+  const words = []
+  res.forEach((r) => {
+    words.push(r[0])
+  })
+  return words
+}
 
 // Craigslist
 completions.cl = {
@@ -317,7 +342,6 @@ completions.cl = {
   search: "https://www.craigslist.org/search/sss?query=",
   compl:  "https://www.craigslist.org/suggest?v=12&type=search&cat=sss&area=1&term=",
 }
-
 completions.cl.callback = (response) => JSON.parse(response.text)
 
 // EBay
@@ -327,7 +351,6 @@ completions.eb = {
   search: "https://www.ebay.com/sch/i.html?_nkw=",
   compl:  "https://autosug.ebay.com/autosug?callback=0&sId=0&kwd=",
 }
-
 completions.eb.callback = (response) => JSON.parse(response.text).res.sug
 
 // Yelp
@@ -337,7 +360,6 @@ completions.yp = {
   search: "https://www.yelp.com/search?find_desc=",
   compl:  "https://www.yelp.com/search_suggest/v2/prefetch?prefix=",
 }
-
 completions.yp.callback = (response) => {
   const res = JSON.parse(response.text).response
   const words = []
@@ -397,7 +419,6 @@ completions.de = {
     wordBaseURL: "http://onelook.com/?w=",
   },
 }
-
 completions.de.callback = (response) => {
   const res = JSON.parse(response.text)
   return parseDatamuseRes(res, completions.de.opts)
@@ -415,23 +436,21 @@ completions.th = {
     wordBaseURL: "http://onelook.com/thesaurus/?s=",
   },
 }
-
 completions.th.callback = (response) => {
   const res = JSON.parse(response.text)
   return parseDatamuseRes(res, completions.th.opts)
 }
 
-// Wikipedia
-completions.wp = {
-  alias:  "wp",
-  name:   "wikipedia",
+// Wikipedia - English version
+completions.we = {
+  alias:  "we",
+  name:   "wikipedia-english",
   search: "https://en.wikipedia.org/w/index.php?search=",
   compl:  "https://en.wikipedia.org/w/api.php?action=query&format=json&generator=prefixsearch&prop=info|pageprops%7Cpageimages%7Cdescription&redirects=&ppprop=displaytitle&piprop=thumbnail&pithumbsize=100&pilimit=6&inprop=url&gpssearch=",
 }
-
-completions.wp.callback = (response) => Object.values(JSON.parse(response.text).query.pages)
+completions.we.callback = (response) => Object.values(JSON.parse(response.text).query.pages)
   .map((p) => {
-    const img = p.thumbnail ? p.thumbnail.source : wpDefaultIcon
+    const img = p.thumbnail ? p.thumbnail.source : weDefaultIcon
     const desc = p.description ? p.description : ""
     return createSuggestionItem(
       `
@@ -447,13 +466,22 @@ completions.wp.callback = (response) => Object.values(JSON.parse(response.text).
     )
   })
 
+// Wikipedia - Simplified Chinese version
+completions.wc = {
+  alias:    "wc",
+  name:     "wikipedia-chinese",
+  search:   "https://zh.wikipedia.org/w/index.php?search=",
+  compl:    "https://zh.wikipedia.org/w/api.php?action=query&format=json&generator=prefixsearch&prop=info|pageprops%7Cpageimages%7Cdescription&redirects=&ppprop=displaytitle&piprop=thumbnail&pithumbsize=100&pilimit=6&inprop=url&gpssearch=",
+  callback: completions.we.callback,
+}
+
 // Wikipedia - Simple English version
 completions.ws = {
   alias:    "ws",
   name:     "wikipedia-simple",
   search:   "https://simple.wikipedia.org/w/index.php?search=",
   compl:    "https://simple.wikipedia.org/w/api.php?action=query&format=json&generator=prefixsearch&prop=info|pageprops%7Cpageimages%7Cdescription&redirects=&ppprop=displaytitle&piprop=thumbnail&pithumbsize=100&pilimit=6&inprop=url&gpssearch=",
-  callback: completions.wp.callback,
+  callback: completions.we.callback,
 }
 
 // Wiktionary
@@ -463,7 +491,6 @@ completions.wt = {
   search: "https://en.wiktionary.org/w/index.php?search=",
   compl:  "https://en.wiktionary.org/w/api.php?action=query&format=json&generator=prefixsearch&gpssearch=",
 }
-
 completions.wt.callback = (response) => Object.values(JSON.parse(response.text).query.pages)
   .map((p) => p.title)
 
@@ -474,7 +501,6 @@ completions.wa = {
   search: "http://www.wolframalpha.com/input/?i=",
   compl:  `http://api.wolframalpha.com/v2/query?appid=${keys.wolframalpha}&format=plaintext&output=json&reinterpret=true&input=%s`,
 }
-
 completions.wa.callback = (response) => {
   const res = JSON.parse(response.text).queryresult
 
@@ -573,7 +599,6 @@ completions.co = {
   search: "https://www.crunchbase.com/textsearch?q=",
   compl:  `https://api.crunchbase.com/v/3/odm_organizations?user_key=${keys.crunchbase}&query=%s`,
 }
-
 completions.co.callback = (response) => parseCrunchbase(response, (org) => {
   const r = org.properties
   const p = {
@@ -608,7 +633,6 @@ completions.cp = {
   search: "https://www.crunchbase.com/app/search/?q=",
   compl:  `https://api.crunchbase.com/v/3/odm_people?user_key=${keys.crunchbase}&query=%s`,
 }
-
 completions.cp.callback = (response) => parseCrunchbase(response, (person) => {
   const r = person.properties
   const p = {
@@ -640,7 +664,7 @@ completions.cp.callback = (response) => parseCrunchbase(response, (person) => {
   return p
 })
 
-// ****** Search Engines ****** //
+// ****** DuckDuckGo ****** //
 
 // DuckDuckGo
 completions.dd = {
@@ -649,7 +673,6 @@ completions.dd = {
   search: "https://duckduckgo.com/?q=",
   compl:  "https://duckduckgo.com/ac/?q=",
 }
-
 completions.dd.callback = (response) => JSON.parse(response.text).map((r) => r.phrase)
 
 // DuckDuckGo - I'm Feeling Lucky
@@ -697,6 +720,8 @@ completions.dm = {
   callback: completions.dd.callback,
 }
 
+// ****** Google ****** //
+
 // Google
 completions.go = {
   alias:  "go",
@@ -704,7 +729,6 @@ completions.go = {
   search: "https://www.google.com/search?q=",
   compl:  "https://www.google.com/complete/search?client=chrome-omni&gs_ri=chrome-ext&oit=1&cp=1&pgcl=7&q=",
 }
-
 completions.go.callback = (response) => JSON.parse(response.text)[1]
 
 // Google Images
@@ -712,6 +736,33 @@ completions.gi = {
   alias:    "gi",
   name:     "google-images",
   search:   "https://www.google.com/search?tbm=isch&q=",
+  compl:    "https://www.google.com/complete/search?client=chrome-omni&gs_ri=chrome-ext&oit=1&cp=1&pgcl=7&ds=i&q=",
+  callback: completions.go.callback,
+}
+
+// Google Maps
+completions.gm = {
+  alias:    "gm",
+  name:     "google-maps",
+  search:   "https://www.google.com/maps/search/",
+  compl:    "https://www.google.com/complete/search?client=chrome-omni&gs_ri=chrome-ext&oit=1&cp=1&pgcl=7&ds=i&q=",
+  callback: completions.go.callback,
+}
+
+// Google Play
+completions.gp = {
+  alias:    "gp",
+  name:     "google-play",
+  search:   "https://play.google.com/store/search?q=",
+  compl:    "https://www.google.com/complete/search?client=chrome-omni&gs_ri=chrome-ext&oit=1&cp=1&pgcl=7&ds=i&q=",
+  callback: completions.go.callback,
+}
+
+// Google Translate
+completions.gt = {
+  alias:    "gt",
+  name:     "google-translate",
+  search:   "https://translate.google.cn/#view=home&op=translate&sl=auto&tl=zh-CN&text=",
   compl:    "https://www.google.com/complete/search?client=chrome-omni&gs_ri=chrome-ext&oit=1&cp=1&pgcl=7&ds=i&q=",
   callback: completions.go.callback,
 }
@@ -725,7 +776,25 @@ completions.G = {
   callback: completions.go.callback,
 }
 
-//  ****** Elixir ****** //
+// ****** Other Search Engines ****** //
+
+// Baidu
+completions.bd = {
+  alias:  "bd",
+  name:   "baidu",
+  search: "https://www.baidu.com/s?ie=UTF-8&wd=",
+  compl:  "https://www.baidu.com/sugrec?pre=1&p=3&ie=utf-8&json=1&prod=pc&from=pc_web&wd=",
+}
+completions.bd.callback = (response) => {
+  const res = JSON.parse(response.text).g
+  const words = []
+  res.forEach((r) => {
+    words.push(r.q)
+  })
+  return words
+}
+
+// ****** Elixir ****** //
 
 // Hex.pm
 completions.hx = {
@@ -734,7 +803,6 @@ completions.hx = {
   search: "https://hex.pm/packages?sort=downloads&search=",
   compl:  "https://hex.pm/api/packages?sort=downloads&hx&search=",
 }
-
 completions.hx.callback = (response) => JSON.parse(response.text).map((s) => {
   let dls = ""
   let desc = ""
@@ -769,7 +837,6 @@ completions.hd = {
   search: "https://hex.pm/packages?sort=downloads&search=",
   compl:  "https://hex.pm/api/packages?sort=downloads&hd&search=",
 }
-
 completions.hd.callback = (response) => JSON.parse(response.text).map((s) => {
   let dls = ""
   let desc = ""
@@ -798,7 +865,6 @@ completions.ex = {
   search: "https://hex.pm/packages?sort=downloads&ex&search=",
   compl:  googleCxURL("ex"),
 }
-
 completions.ex.callback = (response) => JSON.parse(response.text).items.map((s) => {
   let hash = ""
 
@@ -873,7 +939,6 @@ completions.gd = {
   search: "https://godoc.org/?q=",
   compl:  "https://api.godoc.org/search?q=",
 }
-
 completions.gd.callback = (response) => JSON.parse(response.text).results.map((s) => {
   let prefix = ""
   if (s.import_count) {
@@ -892,7 +957,6 @@ completions.gw = {
   search: "https://gowalker.org/search?auto_redirect=true&q=",
   compl:  "https://gowalker.org/search/json?q=",
 }
-
 completions.gw.callback = (response) => JSON.parse(response.text).results.map((s) => {
   const title = escape(s.title)
   const desc = escape(s.description)
@@ -913,7 +977,6 @@ completions.ha = {
   search: "https://hackage.haskell.org/packages/search?terms=",
   compl:  "https://hackage.haskell.org/packages/search.json?terms=",
 }
-
 completions.ha.callback = (response) => JSON.parse(response.text)
   .map((s) => createURLItem(s.name, `https://hackage.haskell.org/package/${s.name}`))
 
@@ -926,7 +989,6 @@ completions.ho = {
   compl:  `https://www.haskell.org/hoogle/?mode=json&hoogle=${
     encodeURIComponent("+platform +xmonad +xmonad-contrib ")}`,
 }
-
 completions.ho.callback = (response) => JSON.parse(response.text).results
   .map((s) => createURLItem(s.self, s.location))
 
@@ -937,7 +999,6 @@ completions.hw = {
   search: "https://wiki.haskell.org/index.php?go=go&search=",
   compl:  "https://wiki.haskell.org/api.php?action=opensearch&format=json&formatversion=2&namespace=0&limit=10&suggest=true&search=",
 }
-
 completions.hw.callback = (response) => JSON.parse(response.text)[1]
 
 // ****** HTML, CSS, JavaScript, NodeJS, ... ****** //
@@ -969,7 +1030,6 @@ completions.md = {
   search: "https://developer.mozilla.org/en-US/search?q=",
   compl:  "https://developer.mozilla.org/en-US/search.json?q=",
 }
-
 completions.md.callback = (response) => {
   const res = JSON.parse(response.text)
   return res.documents.map((s) => {
@@ -999,7 +1059,6 @@ completions.np = {
   search: "https://www.npmjs.com/search?q=",
   compl:  "https://api.npms.io/v2/search/suggestions?size=20&q=",
 }
-
 completions.np.callback = (response) => JSON.parse(response.text)
   .map((s) => {
     let flags = ""
@@ -1047,7 +1106,6 @@ completions.hn = {
   search: "https://hn.algolia.com/?query=",
   compl:  "https://hn.algolia.com/api/v1/search?tags=(story,comment)&query=",
 }
-
 completions.hn.callback = (response) => {
   const res = JSON.parse(response.text)
   return res.hits.map((s) => {
@@ -1088,7 +1146,6 @@ completions.re = {
   search: "https://www.reddit.com/search?sort=relevance&t=all&q=",
   compl:  "https://api.reddit.com/search?syntax=plain&sort=relevance&limit=20&q=",
 }
-
 completions.re.callback = (response) => JSON.parse(response.text).data.children
   .map((s) => createURLItem(`[${s.data.score}] ${s.data.title}`, `https://reddit.com${s.data.permalink}`))
 
@@ -1099,7 +1156,6 @@ completions.yt = {
   search: "https://www.youtube.com/search?q=",
   compl:  `https://www.googleapis.com/youtube/v3/search?maxResults=20&part=snippet&type=video,channel&key=${keys.google_yt}&safeSearch=none&q=`,
 }
-
 completions.yt.callback = (response) => JSON.parse(response.text).items
   .map((s) => {
     switch (s.id.kind) {
@@ -1117,5 +1173,80 @@ completions.yt.callback = (response) => JSON.parse(response.text).items
       return null
     }
   }).filter((s) => s !== null)
+
+// GCores
+completions.gc = {
+  alias:  "gc",
+  name:   "gcores",
+  search: "https://www.gcores.com/search?keyword=",
+  compl:  "https://www.gcores.com/gapi/v1/search/suggest?query=",
+}
+completions.gc.callback = (response) => JSON.parse(response.text).data
+
+// Bilibili
+completions.bi = {
+  alias:  "bi",
+  name:   "bilibili",
+  search: "https://search.bilibili.com/all?keyword=",
+}
+
+// Steam
+completions.st = {
+  alias:  "st",
+  name:   "steam",
+  search: "https://store.steampowered.com/search/?term=",
+}
+
+// Zhihu
+completions.zh = {
+  alias:    "zh",
+  name:     "zhihu",
+  search:   "https://www.zhihu.com/search?type=content&q=",
+  compl:    "https://www.google.com/complete/search?client=chrome-omni&gs_ri=chrome-ext&oit=1&cp=1&pgcl=7&ds=i&q=",
+  callback: completions.go.callback,
+}
+
+// Douban
+completions.db = {
+  alias:    "db",
+  name:     "douban",
+  search:   "https://www.douban.com/search?q=",
+  compl:    "https://www.google.com/complete/search?client=chrome-omni&gs_ri=chrome-ext&oit=1&cp=1&pgcl=7&ds=i&q=",
+  callback: completions.go.callback,
+}
+
+// ****** Python & AI & Document ****** //
+
+// Google Scholar
+completions.gs = {
+  alias:  "gs",
+  name:   "google-scholar",
+  search: "https://scholar.google.com/scholar?hl=zh-CN&as_sdt=0%2C5&btnG=&q=",
+  compl:  "https://scholar.google.com/scholar_complete?hl=zh-CN&as_sdt=0%2C5&btnG=&q=",
+}
+completions.gs.callback = (response) => JSON.parse(response.text).l
+
+// arXiv
+completions.ar = {
+  alias:    "ar",
+  name:     "arXiv",
+  search:   "https://arxiv.org/search/?searchtype=all&abstracts=show&order=-announced_date_first&size=50&query=",
+  compl:    "https://scholar.google.com/scholar_complete?hl=zh-CN&as_sdt=0%2C5&btnG=&q=",
+  callback: completions.gs.callback,
+}
+
+// Python Document Chinese
+completions.py = {
+  alias:  "py",
+  name:   "python-doc-zh",
+  search: "https://docs.python.org/zh-cn/3/search.html?q=",
+}
+
+// PyTorch Document Chinese
+completions.pt = {
+  alias:  "pt",
+  name:   "pytorch-doc-zh",
+  search: "https://pytorch-cn.readthedocs.io/zh/latest/search.html?q=",
+}
 
 module.exports = completions
