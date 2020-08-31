@@ -330,7 +330,9 @@ completions.tb.callback = (response) => {
   const res = JSON.parse(response.text).result
   const words = []
   res.forEach((r) => {
-    words.push(r[0])
+    if (words.indexOf(r[0]) === -1) {
+      words.push(r[0])
+    }
   })
   return words
 }
@@ -789,7 +791,29 @@ completions.bd.callback = (response) => {
   const res = JSON.parse(response.text).g
   const words = []
   res.forEach((r) => {
-    words.push(r.q)
+    const w = r.q
+    if (words.indexOf(w) === -1) {
+      words.push(w)
+    }
+  })
+  return words
+}
+
+// AMap
+completions.am = {
+  alias:  "am",
+  name:   "amap",
+  search: "https://www.amap.com/search?query=",
+  compl:  "https://www.amap.com/service/poiTipslite?&words=",
+}
+completions.am.callback = (response) => {
+  const res = JSON.parse(response.text).data.tip_list
+  const words = []
+  res.forEach((r) => {
+    const w = r.tip.name
+    if (words.indexOf(w) === -1) {
+      words.push(w)
+    }
   })
   return words
 }

@@ -59,10 +59,22 @@ const maps = {
       callback:    actions.previewLink,
     },
     {
+      alias:       "zx",
+      map:         "X",
+      category:    categories.tabs,
+      description: "恢复刚关闭的标签页",
+    },
+    {
+      alias:       "q",
+      map:         "E",
+      category:    categories.tabs,
+      description: "跳到左侧标签页",
+    },
+    {
       alias:       "w",
-      map:         "k",
-      category:    categories.scroll,
-      description: "向上滚动",
+      map:         "R",
+      category:    categories.tabs,
+      description: "跳到右侧标签页",
     },
     {
       alias:       "s",
